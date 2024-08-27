@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BitLabyrinth.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97ef801d03084c92d79425804fd5e52d03b4c582")]
 [assembly: System.Reflection.AssemblyProductAttribute("BitLabyrinth.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BitLabyrinth.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

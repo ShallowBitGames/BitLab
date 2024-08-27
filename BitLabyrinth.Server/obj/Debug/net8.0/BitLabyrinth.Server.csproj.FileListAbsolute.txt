@@ -6,7 +6,6 @@ C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\bin\Debug\n
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\bin\Debug\net8.0\BitLabyrinth.Server.runtimeconfig.json
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\bin\Debug\net8.0\BitLabyrinth.Server.dll
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\bin\Debug\net8.0\BitLabyrinth.Server.pdb
-C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\bin\Debug\net8.0\Microsoft.AspNetCore.SpaProxy.dll
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
@@ -20,6 +19,7 @@ C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\obj\Debug\n
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\obj\Debug\net8.0\BitLabyrinth.Server.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\obj\Debug\net8.0\BitLabyrinth.Server.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\obj\Debug\net8.0\BitLabyrinth.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\obj\Debug\net8.0\BitLabyrinth.Server.sourcelink.json
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Administrator\source\repos\BitLabyrinth\BitLabyrinth.Server\obj\Debug\net8.0\staticwebassets\msbuild.BitLabyrinth.Server.Microsoft.AspNetCore.StaticWebAssets.props

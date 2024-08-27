@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\source\\repos\\BitLabyrinth\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8BC0ACBE-79B0-4FC9-A117-DD6DB44528D2}|BitLabyrinth.Server\\BitLabyrinth.Server.csproj|c:\\users\\administrator\\source\\repos\\bitlabyrinth\\bitlabyrinth.server\\bitlabyrinth.server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{8BC0ACBE-79B0-4FC9-A117-DD6DB44528D2}|BitLabyrinth.Server\\BitLabyrinth.Server.csproj|solutionrelative:bitlabyrinth.server\\bitlabyrinth.server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{F11E7925-DCB1-4C9A-9773-2FDADDD7EDAF}|BitLabyrinth.Server\\BitLabyrinth.Server.csproj|c:\\users\\administrator\\source\\repos\\bitlabyrinth\\bitlabyrinth.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F11E7925-DCB1-4C9A-9773-2FDADDD7EDAF}|BitLabyrinth.Server\\BitLabyrinth.Server.csproj|solutionrelative:bitlabyrinth.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BitLabyrinth.Server.csproj",
-              "DocumentMoniker": "C:\\Users\\Administrator\\source\\repos\\BitLabyrinth\\BitLabyrinth.Server\\BitLabyrinth.Server.csproj",
-              "RelativeDocumentMoniker": "BitLabyrinth.Server\\BitLabyrinth.Server.csproj",
-              "ToolTip": "C:\\Users\\Administrator\\source\\repos\\BitLabyrinth\\BitLabyrinth.Server\\BitLabyrinth.Server.csproj",
-              "RelativeToolTip": "BitLabyrinth.Server\\BitLabyrinth.Server.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-08-19T07:45:32.78Z",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\source\\repos\\BitLabyrinth\\BitLabyrinth.Server\\Program.cs",
+              "RelativeDocumentMoniker": "BitLabyrinth.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\Administrator\\source\\repos\\BitLabyrinth\\BitLabyrinth.Server\\Program.cs",
+              "RelativeToolTip": "BitLabyrinth.Server\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T05:55:34.275Z",
               "EditorCaption": ""
             }
           ]
