@@ -9,7 +9,7 @@ namespace BitLab
     {
         //const int Port = ;
         //private const string TestFile = "test-values/simple.txt";
-        private const string TestFile = "../../../Maze/test-values/simple.txt";
+        private const string TestFile = "../../../Maze/test-values/mouse.txt";
         private string[] TestFiles = { "test-values/simple.txt", "test-values/invalid.txt", "test-values/complex.txt" };
 
         private Maze CurrentMaze = new Maze();
