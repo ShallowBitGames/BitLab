@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace BitLab
+namespace BitLabyrinth
 {
     public class Maze
     {

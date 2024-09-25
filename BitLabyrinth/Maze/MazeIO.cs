@@ -3,9 +3,9 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 
-namespace BitLab
+namespace BitLabyrinth
 {
-    public class TestClient
+    public class MazeIO
     {
         //const int Port = ;
         //private const string TestFile = "test-values/simple.txt";
