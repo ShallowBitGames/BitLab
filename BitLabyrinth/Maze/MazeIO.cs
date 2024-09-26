@@ -7,24 +7,16 @@ namespace BitLabyrinth
 {
     public class MazeIO
     {
-        //const int Port = ;
-        //private const string TestFile = "test-values/simple.txt";
-        private const string TestFile = "../../../Maze/test-values/mouse.txt";
-        private string[] TestFiles = { "test-values/simple.txt", "test-values/invalid.txt", "test-values/complex.txt" };
+        
+        private Map CurrentMaze = new();
 
-        private Maze CurrentMaze = new Maze();
-
-        public void RunTest()
+        public void RunTest(string path)
         {
-            //Console.WriteLine("Current directory path: " + Directory.GetCurrentDirectory());
 
-            ReadMaze(TestFile);
+            ReadMaze(path);
             PrintMaze();
-            PostMaze(CurrentMaze);
-
 
         }
-
 
         private void ReadMaze(string FilePath)
         {
@@ -32,7 +24,7 @@ namespace BitLabyrinth
             int width;
             string[] values;
 
-            Maze maze = new Maze();
+            Map maze = new();
 
             using StreamReader reader = new(FilePath);
 
@@ -51,10 +43,13 @@ namespace BitLabyrinth
 
         public void PrintMaze()
         {
-            CurrentMaze.print();
+            List<string> stringList = CurrentMaze.GetLinesAsStrings();
+
+            foreach (string str in stringList)
+                Console.WriteLine(str);
         }
 
-        private void PostMaze(Maze maze)
+        private void PostMaze(Map maze)
         {
             HttpClient client = new HttpClient();
 

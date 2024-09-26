@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BitLabyrinth.Maze
+using BitLabyrinth;
+using BitLabyrinth.Maze;
+
+namespace BitLabyrinth
 {
     internal interface MazeSolver
     {
-        Path SolveMaze(Maze maze);
+        Maze.MazePath SolveMaze(Map maze);
 
 
     }

@@ -8,11 +8,13 @@ namespace BitLabyrinth.Maze.Solvers
 {
     internal class RandomMS : MazeSolver
     {
-        public Path SolveMaze(Maze maze)
+        public MazePath SolveMaze(Map maze)
         {
-            Path path = new Path();
+            MazePath path = new();
 
-            var currentPosition = maze.GetStartPosition();
+            int[] currentPosition = [0, 0];
+            currentPosition[0] = maze.StartPosition.Item1;
+            currentPosition[1] = maze.StartPosition.Item2;
 
             while(!maze.IsGoal(currentPosition))
             {
@@ -24,6 +26,7 @@ namespace BitLabyrinth.Maze.Solvers
                     int modifier = rand.Next(2) == 0 ? -1 : 1;    // either -1 or +1 
 
                     var nextPosition = currentPosition;
+
                     nextPosition[index] += modifier;
 
                     if (maze.IsPassable(nextPosition))
