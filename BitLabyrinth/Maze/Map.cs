@@ -78,5 +78,9 @@ namespace BitLabyrinth
             return tile == ' ';
         }
 
+        internal void SetTile(int x, int y, char tileSymbol)
+        {
+            Tiles[x][y] = tileSymbol;
+        }
     }
 }

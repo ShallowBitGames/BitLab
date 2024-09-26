@@ -1,24 +1,16 @@
+using BitLabyrinth.Maze;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 
-namespace BitLabyrinth
+namespace BitLabyrinth.Maze
 {
-    public class MazeIO
+    public static class MazeIO
     {
-        
-        private Map CurrentMaze = new();
 
-        public void RunTest(string path)
-        {
-
-            ReadMaze(path);
-            PrintMaze();
-
-        }
-
-        private void ReadMaze(string FilePath)
+        internal static Map ReadMap(string FilePath)
         {
             int height;
             int width;
@@ -33,27 +25,58 @@ namespace BitLabyrinth
             {
                 char[] lineSep = line.ToCharArray();
 
+                width = lineSep.Length;
+
                 maze.addLine(lineSep.ToList());
+
+                /*
+                foreach(char c in lineSep){
+                    if(c == 'x')
+                    {
+                        startPosition
+                    }
+                }*/
             }
 
-
-            CurrentMaze = maze;
+            return maze;
 
         }
 
-        public void PrintMaze()
-        {
-            List<string> stringList = CurrentMaze.GetLinesAsStrings();
+        internal static void PrintMaze(Map maze) {
+
+            List<string> stringList = maze.GetLinesAsStrings();
 
             foreach (string str in stringList)
                 Console.WriteLine(str);
         }
 
-        private void PostMaze(Map maze)
+        internal static void AnimatePath(Map maze, MazePath path)
+        {
+
+            foreach(var step in path.Steps) {
+
+                int x = step.Item1;
+                int y = step.Item2;
+                 
+                Map frame = maze;
+                frame.SetTile(x, y, '!');
+
+                for (int i = 0; i < 3; i++)
+                {
+                    PrintMaze(maze);
+                    System.Threading.Thread.Sleep(500);
+                    PrintMaze(frame);
+                    System.Threading.Thread.Sleep(500);
+                }
+            }
+
+        }
+
+        internal static void PostMaze(Map maze)
         {
             HttpClient client = new HttpClient();
 
-            string jsonString = JsonSerializer.Serialize(CurrentMaze);
+            string jsonString = JsonSerializer.Serialize(maze);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
             string url = "http://localhost:5009/api/maze/maze";

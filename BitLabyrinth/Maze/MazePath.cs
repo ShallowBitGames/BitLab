@@ -8,11 +8,21 @@ namespace BitLabyrinth.Maze
 {
     internal class MazePath
     {
-        public List<(int x, int y)> Steps { get; private set; } = new();
+        public List<Tuple<int, int>> Steps { get; private set; } = new();
 
         public void Clear() { Steps.Clear(); }
 
-        public void AddStep(int x, int y) { Steps.Add((x, y)); }
+        public Tuple<int, int> Last()
+        {
+            return Steps.Last();
+        }
+
+        public void AddStep(int x, int y) {
+
+            Tuple<int, int> tuple = Tuple.Create(x, y);
+            AddStep(tuple); 
+        
+        }
 
         public void AddStep(int[] coordinates)
         {
@@ -22,5 +32,9 @@ namespace BitLabyrinth.Maze
             AddStep(x, y);
         }
 
+        public void AddStep(Tuple<int, int> coordinates)
+        {
+            Steps.Add(coordinates);
+        }
     }
 }

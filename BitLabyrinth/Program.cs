@@ -12,21 +12,21 @@ string? input = Console.ReadLine();
 
 Console.WriteLine("");
 
-string path = "../../../Maze/test-values/mouse.txt";
+string filePath = "../../../Maze/test-values/mouse.txt";
 
 // TODO: turn into map
 switch (input)
 {
-    case "1": 
-        path = "../../../Maze/test-values/simple.txt";
+    case "1":
+        filePath = "../../../Maze/test-values/simple.txt";
         break;
 
     case "2":
-        path = "../../../Maze/test-values/mouse.txt";
+        filePath = "../../../Maze/test-values/mouse.txt";
         break;
 
     case "3":
-        path = "../../../Maze/test-values/invalid.txt";
+        filePath = "../../../Maze/test-values/invalid.txt";
         break;
 
     default:
@@ -35,16 +35,12 @@ switch (input)
 }
 
 
-MazeIO IOClient = new();
-IOClient.RunTest(path);
-
 // MazeIO -> read in maze
-
-
+Map maze = MazeIO.ReadMap(filePath);
+MazeIO.PrintMaze(maze);
 
 // create and use solver
+MazeSolver solver = new BitLabyrinth.Maze.Solvers.RandomMS(maze);
+MazePath path = solver.SolveMaze(maze, 100);
 
-//MazeSolver solver = new BitLabyrinth.Maze.Solvers.RandomMS();
-
-
-string m = "ᘛ⁐̤ᕐᐷ";
+MazeIO.AnimatePath(maze, path);
