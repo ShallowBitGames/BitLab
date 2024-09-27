@@ -60,8 +60,10 @@ namespace BitLabyrinth.Maze.Solvers
                 int index = rand.Next(2);       // either 0 (x-coordinate) or 1 (y-coordinate)
                 int modifier = rand.Next(2) == 0 ? -1 : 1;    // either -1 or +1 
 
-                var nextPosition = currentPosition;
+                if (currentPosition[index] + modifier < 0)
+                    continue;
 
+                var nextPosition = currentPosition;
                 nextPosition[index] += modifier;
 
                 if (Maze.IsPassable(nextPosition))

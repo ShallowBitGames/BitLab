@@ -1,62 +1,33 @@
 using System.Collections.Generic;
 using System;
 
-namespace BitLabyrinth
+
+namespace BitLabyrinth.Maze
 {
     public class Map
     {
-        public int Width { get; set; } = 0;
-        public int Height { get; set; } = 0;
+        internal Map(List<List<Tile>> tiles, Tuple<int, int> startPosition, Tuple<int, int> goalPosition)
+        {
+            Tiles = tiles;
+            StartPosition = startPosition;
+            GoalPosition = goalPosition;
+        }
 
-        public Tuple<int, int> StartPosition { get; private set; } = Tuple.Create(0, 0);
+        internal Map(List<List<Tile>> tiles, int[] sp, int[] gp)
+        {
+            Tiles = tiles;
+            StartPosition = new Tuple<int, int>(sp[0], sp[1]);
+            GoalPosition = new Tuple<int, int>(gp[0], gp[1]);
+        }
+
+        internal Tuple<int, int> StartPosition { get; set; } = Tuple.Create(0, 0);
 
         //TODO: multiple goals
-        public Tuple<int, int> GoalPosition { get; private set; } = Tuple.Create(0, 0);
+        internal Tuple<int, int> GoalPosition { get; set; } = Tuple.Create(0, 0);
 
-        public List<List<char>> Tiles { get; private set; } = new List<List<char>>();
+        internal List<List<Tile>> Tiles { get; set; } = new List<List<Tile>>();
 
-        public void addLine(List<char> line)
-        {
-            List<char> nextLine = new List<char>();
-
-            foreach (char c in line)
-            {
-                nextLine.Add(c);
-            }
-
-            Tiles.Add(nextLine);
-
-        }
-
-        public void print()
-        {
-            foreach (List<char> row in Tiles)
-            {
-                foreach (char tile in row)
-                {
-                    Console.Write(tile);
-                }
-                Console.WriteLine();
-            }
-        }
-
-        public List<string> GetLinesAsStrings()
-        {
-            List<string> stringList = new();
-
-            foreach(List<char> line in Tiles) 
-            {
-                string lineString = "";
-                foreach(char c in line)
-                    lineString += c;
-
-                stringList.Add(lineString);
-            }
-
-            return stringList;
-        }
-
-        public bool IsGoal(int[] coordinates)
+        internal bool IsGoal(int[] coordinates)
         {
             if(coordinates.Length != 2) return false;
 
@@ -65,22 +36,22 @@ namespace BitLabyrinth
             return IsGoal(tup);
         }
 
-        public bool IsGoal(Tuple<int, int> coordinates)
+        internal bool IsGoal(Tuple<int, int> coordinates)
         {
             return coordinates == GoalPosition;
         }
 
-        public bool IsPassable(int[] coordinates)
+        internal bool IsPassable(int[] coordinates)
         {
             if (coordinates.Length != 2) return false;
 
-            char tile = Tiles[coordinates[0]][coordinates[1]];
-            return tile == ' ';
+            Tile tile = Tiles[coordinates[0]][coordinates[1]];
+            return tile.IsPassable;
         }
 
-        internal void SetTile(int x, int y, char tileSymbol)
+        internal void SetTile(int x, int y, TileType tileType)
         {
-            Tiles[x][y] = tileSymbol;
+            Tiles[x][y] = new Tile(tileType);
         }
     }
 }
