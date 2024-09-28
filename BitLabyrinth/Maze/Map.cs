@@ -31,14 +31,12 @@ namespace BitLabyrinth.Maze
         {
             if(coordinates.Length != 2) return false;
 
-            Tuple<int, int> tup = new(coordinates[0], coordinates[1]);
-
-            return IsGoal(tup);
+            return (coordinates[0] == GoalPosition.Item1 && coordinates[1] == GoalPosition.Item2);
         }
 
         internal bool IsGoal(Tuple<int, int> coordinates)
         {
-            return coordinates == GoalPosition;
+            return (coordinates.Item1 == GoalPosition.Item1 && coordinates.Item2 == GoalPosition.Item2);
         }
 
         internal bool IsPassable(int[] coordinates)

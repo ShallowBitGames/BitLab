@@ -151,14 +151,18 @@ namespace BitLabyrinth.Maze
 
                 framePlayer[x][y] = '!';
 
-                for (int i = 0; i < 3; i++)
-                {
-                    PrintFrame(frameBase);
-                    System.Threading.Thread.Sleep(500);
+                //for (int i = 0; i < 3; i++)
+                //{
+                    //Console.Clear();
+                    //PrintFrame(frameBase);
+                    //System.Threading.Thread.Sleep(100);
+                    Console.Clear();
                     PrintFrame(framePlayer);
+                //Console.WriteLine(path.Last());
                     System.Threading.Thread.Sleep(500);
-                }
+                //}
             }
+
 
         }
 

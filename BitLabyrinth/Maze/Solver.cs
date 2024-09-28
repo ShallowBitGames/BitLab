@@ -11,7 +11,7 @@ namespace BitLabyrinth
 {
     internal interface MazeSolver
     {
-        MazePath SolveMaze(Map maze, int cutoff);
+        MazePath SolveMaze(int cutoff);
         MazePath NextSteps(int numSteps);
 
     }

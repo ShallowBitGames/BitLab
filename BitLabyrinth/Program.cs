@@ -41,6 +41,14 @@ MazeIO.PrintMaze(maze);
 
 // create and use solver
 MazeSolver solver = new BitLabyrinth.Maze.Solvers.RandomMS(maze);
-MazePath path = solver.SolveMaze(maze, 100);
+MazePath path = solver.SolveMaze(100);
+
 
 MazeIO.AnimatePath(maze, path);
+if (maze.IsGoal(path.Last()))
+    Console.WriteLine("Hooray! Random mouse solved the maze!");
+else
+    Console.WriteLine("Random mouse did not manage to find out.");
+
+Console.WriteLine("Steps taken:");
+Console.WriteLine(path);
