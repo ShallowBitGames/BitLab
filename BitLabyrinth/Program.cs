@@ -37,7 +37,7 @@ switch (input)
 
 // MazeIO -> read in maze
 Map maze = MazeIO.ReadMap(filePath);
-MazeIO.PrintMaze(maze);
+//MazeIO.PrintMaze(maze);
 
 // create and use solver
 MazeSolver solver = new BitLabyrinth.Maze.Solvers.RandomMS(maze);

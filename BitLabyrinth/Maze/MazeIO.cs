@@ -140,29 +140,36 @@ namespace BitLabyrinth.Maze
 
         internal static void AnimatePath(Map maze, MazePath path)
         {
+            List<List<char>> frameBase = MapToFrame(maze);
+
+            // prepare the base and make cursor invisible
+            Console.CursorVisible = false;
+            Console.Clear();
+            PrintFrame(frameBase);
 
             foreach(var step in path.Steps) {
 
                 int x = step.Item1;
                 int y = step.Item2;
 
-                List<List<char>> frameBase = MapToFrame(maze);
-                var framePlayer = frameBase;
+                Console.SetCursorPosition(y, x);
 
-                framePlayer[x][y] = '!';
+                TileType prevTile = maze.GetTile(x, y).Type;
+                char prevChar = SymbolTable.Get(prevTile);
 
-                //for (int i = 0; i < 3; i++)
-                //{
-                    //Console.Clear();
-                    //PrintFrame(frameBase);
-                    //System.Threading.Thread.Sleep(100);
-                    Console.Clear();
-                    PrintFrame(framePlayer);
-                //Console.WriteLine(path.Last());
-                    System.Threading.Thread.Sleep(500);
-                //}
+                Console.Write('!');
+                Thread.Sleep(500);
+
+                // return to previous tile
+                Console.SetCursorPosition(y, x);
+                Console.Write(prevChar);
+
             }
 
+            // set the cursor below the maze and make cursor visible
+            int rowNumber = maze.Tiles.Count();
+            Console.SetCursorPosition(0, rowNumber + 1);
+            Console.CursorVisible=true;
 
         }
 

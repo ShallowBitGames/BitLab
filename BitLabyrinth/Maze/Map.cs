@@ -51,5 +51,7 @@ namespace BitLabyrinth.Maze
         {
             Tiles[x][y] = new Tile(tileType);
         }
+
+        internal Tile GetTile(int x, int y) { return Tiles[x][y]; }
     }
 }
