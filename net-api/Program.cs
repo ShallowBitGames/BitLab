@@ -1,6 +1,44 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using BitLabyrinth;
 using BitLabyrinth.Maze;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
+string wd = AppContext.BaseDirectory;
+Console.WriteLine(wd);
+int index = wd.IndexOf("net-api");
+wd = wd.Remove(index);
+wd += "njs";
+Console.WriteLine(wd);
+
+
+/*
+System.Diagnostics.Process pr = new();
+pr.StartInfo.FileName = "npm.cmd";
+pr.StartInfo.WorkingDirectory = wd;
+pr.StartInfo.Arguments = "npm run dev";
+pr.Start();
+pr.WaitForExit();
+*/
+
+var processStartInfo = new ProcessStartInfo()
+{
+    FileName = "cmd",
+    RedirectStandardOutput = true,
+    RedirectStandardInput = true,
+    WorkingDirectory = wd
+};
+
+var process = Process.Start(processStartInfo);
+
+if (process == null)
+{
+    throw new Exception("Process should not be null.");
+}
+
+process.StandardInput.WriteLine($"npm run dev &");
+//process.WaitForExit();
+
 
 Console.WriteLine("Hello, World!");
 Console.WriteLine("Please pick a maze for the random mouse to try:");
