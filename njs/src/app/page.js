@@ -1,10 +1,15 @@
 import Image from "next/image";
-import useSWR from 'swr';
+//import useSWR from 'swr';
 
-export default function Home() {
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+
+export default async function Home() {
+    let data = await fetch("https://127.0.0.1:7157/api/maze/maze")
+    let posts = await data.text()
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <p>{ posts}</p>
         <Image
           className="dark:invert"
           src="/next.svg"

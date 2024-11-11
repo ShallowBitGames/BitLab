@@ -50,10 +50,11 @@ app.UseHttpsRedirection();
 
 app.MapGet("/api/maze/maze", () =>
 {
-    string filePath = "../../../Maze/test-values/simple.txt";
-    Map maze = MazeIO.ReadMap(filePath);
-    string jsonString = JsonSerializer.Serialize(maze);
-    return jsonString;
+    //string filePath = "./Maze/test-values/simple.txt";
+    //Map maze = MazeIO.ReadMap(filePath);
+    //string jsonString = JsonSerializer.Serialize(maze);
+    //return jsonString;
+    return "test";
 })
     .WithName("GetMaze")
     .WithOpenApi();
