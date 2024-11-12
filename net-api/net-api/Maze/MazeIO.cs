@@ -11,7 +11,7 @@ using System.Threading.Tasks.Dataflow;
 
 namespace BitLabyrinth.Maze
 {
-    
+
     public static class MazeIO
     {
         //simple double dict, Access via Set and Get
@@ -59,7 +59,7 @@ namespace BitLabyrinth.Maze
 
         internal static Map ReadMap(string FilePath)
         {
-            
+
             List<List<char>> values = new();
             List<List<Tile>> tiles = new();
             int[] startPosition = [-1, -1];
@@ -71,11 +71,11 @@ namespace BitLabyrinth.Maze
             while ((line = reader.ReadLine()) != null)
             {
                 //char[] lineSep = line.ToCharArray();
-                values.Add(line.ToList()); 
+                values.Add(line.ToList());
 
             }
 
-            for(int x = 0; x < values.Count(); x++)
+            for (int x = 0; x < values.Count(); x++)
             {
                 List<Tile> row = new();
 
@@ -135,7 +135,7 @@ namespace BitLabyrinth.Maze
             }
 
             return frames;
-                           
+
         }
 
         internal static void AnimatePath(Map maze, MazePath path)
@@ -147,7 +147,7 @@ namespace BitLabyrinth.Maze
             Console.Clear();
             PrintFrame(frameBase);
 
-            foreach(var step in path.Steps) {
+            foreach (var step in path.Steps) {
 
                 int x = step.Item1;
                 int y = step.Item2;
@@ -169,7 +169,7 @@ namespace BitLabyrinth.Maze
             // set the cursor below the maze and make cursor visible
             int rowNumber = maze.Tiles.Count();
             Console.SetCursorPosition(0, rowNumber + 1);
-            Console.CursorVisible=true;
+            Console.CursorVisible = true;
 
         }
 
@@ -185,6 +185,32 @@ namespace BitLabyrinth.Maze
             var response = client.PostAsync(url, content);
             //Console.WriteLine(response.Content.ReadAsStringAsync());
 
+
+        }
+
+        internal class MazeJSON 
+        {
+            //public string Title { get; set; }
+            public List<string> Rows { get; set; } = new();
+            
+        }
+
+        internal static string JSONStringify(Map maze)
+        {
+            MazeJSON MazeRep = new();
+            
+            List<List<char>> frame = MapToFrame(maze);
+
+            foreach (List<char> row in frame)
+            {
+                string r = "";
+                foreach (char c in row)
+                    r += c;
+
+                MazeRep.Rows.Add(r);
+            }
+
+            return JsonSerializer.Serialize(MazeRep);
 
         }
 
