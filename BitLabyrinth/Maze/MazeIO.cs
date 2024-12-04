@@ -62,8 +62,8 @@ namespace BitLabyrinth.Maze
             
             List<List<char>> values = new();
             List<List<Tile>> tiles = new();
-            int[] startPosition = [-1, -1];
-            int[] goalPosition = [-1, -1];
+            (int, int) startPosition = (-1, -1);
+            (int, int) goalPosition = (-1, -1);
 
             using StreamReader reader = new(FilePath);
 
@@ -87,10 +87,10 @@ namespace BitLabyrinth.Maze
                     row.Add(new Tile(tileType));
 
                     if (tileType == TileType.START)
-                        startPosition = [x, y];
+                        startPosition = (x, y);
 
                     if (tileType == TileType.GOAL)
-                        goalPosition = [x, y];
+                        goalPosition = (x, y);
                 }
 
                 tiles.Add(row);

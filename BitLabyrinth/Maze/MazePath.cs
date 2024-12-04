@@ -8,44 +8,35 @@ namespace BitLabyrinth.Maze
 {
     internal class MazePath
     {
-
         public MazePath() { Steps = new();  }
 
         // copy constructor
         public MazePath(MazePath Original) {
 
-            foreach(Tuple<int, int> step in Original.Steps)
+            foreach((int, int) step in Original.Steps)
                 this.AddStep(step.Item1, step.Item2);
 
         }
         
-        public List<Tuple<int, int>> Steps { get; private set; }
+        public List<(int, int)> Steps { get; private set; }
 
         public void Clear() { Steps.Clear(); }
 
         public bool IsEmpty() {  return Steps.Count == 0; }
 
-        public Tuple<int, int> Last()
+        public (int, int) Last()
         {
             return Steps.Last();
         }
 
         public void AddStep(int x, int y) {
 
-            Tuple<int, int> tuple = Tuple.Create(x, y);
+            (int, int) tuple = (x, y);
             AddStep(tuple); 
         
         }
 
-        public void AddStep(int[] coordinates)
-        {
-            int x = coordinates[0];
-            int y = coordinates[1];
-
-            AddStep(x, y);
-        }
-
-        public void AddStep(Tuple<int, int> coordinates)
+        public void AddStep((int, int) coordinates)
         {
             Steps.Add(coordinates);
         }
@@ -54,7 +45,7 @@ namespace BitLabyrinth.Maze
         {
             string st = "";
 
-            foreach(Tuple<int,int> step in Steps)
+            foreach(var step in Steps)
                 st += "(" + step.Item1 + ", " + step.Item2 + ") ";
 
             return st;

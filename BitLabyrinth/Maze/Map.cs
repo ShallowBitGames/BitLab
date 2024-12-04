@@ -6,46 +6,51 @@ namespace BitLabyrinth.Maze
 {
     public class Map
     {
-        internal Map(List<List<Tile>> tiles, Tuple<int, int> startPosition, Tuple<int, int> goalPosition)
+        internal Map(List<List<Tile>> tiles, (int, int) startPosition, (int, int) goalPosition)
         {
             Tiles = tiles;
             StartPosition = startPosition;
             GoalPosition = goalPosition;
         }
 
-        internal Map(List<List<Tile>> tiles, int[] sp, int[] gp)
-        {
-            Tiles = tiles;
-            StartPosition = new Tuple<int, int>(sp[0], sp[1]);
-            GoalPosition = new Tuple<int, int>(gp[0], gp[1]);
-        }
-
-        internal Tuple<int, int> StartPosition { get; set; } = Tuple.Create(0, 0);
+        internal (int, int) StartPosition { get; set; } = (0, 0);
 
         //TODO: multiple goals
-        internal Tuple<int, int> GoalPosition { get; set; } = Tuple.Create(0, 0);
+        internal (int, int) GoalPosition { get; set; } = (0, 0);
 
         internal List<List<Tile>> Tiles { get; set; } = new List<List<Tile>>();
 
-        internal bool IsGoal(int[] coordinates)
+        internal bool IsGoal(int x, int y)
         {
-            if(coordinates.Length != 2) return false;
-
-            return (coordinates[0] == GoalPosition.Item1 && coordinates[1] == GoalPosition.Item2);
+            return (x == GoalPosition.Item1 && y == GoalPosition.Item2);
         }
 
-        internal bool IsGoal(Tuple<int, int> coordinates)
+        internal bool IsGoal((int, int) coordinates)
         {
-            return (coordinates.Item1 == GoalPosition.Item1 && coordinates.Item2 == GoalPosition.Item2);
+            return IsGoal(coordinates.Item1, coordinates.Item2);
         }
 
-        internal bool IsPassable(int[] coordinates)
+        internal bool IsPassable(int x, int y)
         {
-            if (coordinates.Length != 2) return false;
-
-            Tile tile = Tiles[coordinates[0]][coordinates[1]];
+            Tile tile = Tiles[x][y];
             return tile.IsPassable;
         }
+
+        //checks if tiles exist at a 
+        internal bool IsValid(int x, int y)
+        {
+            return (
+                    x >= 0
+                && y >= 0
+                && x < Tiles.Count
+                && y < Tiles[x].Count);
+        }
+
+        internal bool IsPassable((int, int) coordinates)
+        {
+            return IsPassable(coordinates.Item1, coordinates.Item2);
+        }
+
 
         internal void SetTile(int x, int y, TileType tileType)
         {
