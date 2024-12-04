@@ -15,10 +15,12 @@ Solvers.Add("random", new RandomMS());
 
 
 MazeSolver solver = SolverSelect();
-Map maze = MazeSelect(); 
+Map maze = MazeSelect();
+int cutoff = StepSelect();
 
 solver.SetMap(maze);
-MazePath path = solver.SolveMaze(100);
+
+MazePath path = solver.SolveMaze(cutoff);
 
 MazeIO.AnimatePath(maze, path);
 
@@ -68,11 +70,10 @@ MazeSolver SolverSelect()
     //if one of the if conditions failed we didnt get valid input, repeat
     return SolverSelect();
 }
-
 Map MazeSelect()
 {
-    Console.WriteLine("Hello, World!");
-    Console.WriteLine("Please pick a maze for the random mouse to try:");
+    Console.Clear();
+    Console.WriteLine("Please pick a maze for your mouse to try:");
     Console.WriteLine("[1] simple");
     Console.WriteLine("[2] mouse");
     Console.WriteLine("[3] invalid");
@@ -108,4 +109,23 @@ Map MazeSelect()
     //MazeIO.PrintMaze(maze);
 
     return maze;
+}
+int StepSelect()
+{
+    Console.Clear();
+    Console.WriteLine("How many steps does your mouse get?");
+    string input = Console.ReadLine();
+    
+
+    if (!(input is null))
+    {
+        int input_int = -1;
+        Int32.TryParse(input, out input_int);
+
+        if (input_int > 0)
+            return input_int;
+        
+    }
+
+    return StepSelect();
 }
