@@ -36,7 +36,7 @@ namespace BitLabyrinth.Maze
             return tile.IsPassable;
         }
 
-        //checks if tiles exist at a 
+        //checks if tiles exist at all
         internal bool IsValid(int x, int y)
         {
             return (

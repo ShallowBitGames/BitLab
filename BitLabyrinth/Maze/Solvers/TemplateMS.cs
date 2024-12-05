@@ -57,7 +57,7 @@ namespace BitLabyrinth.Maze.Solvers
             // PartialPath: (the path from the start to now)
             //   PartialPath.Last() -> (int x, int y)
             //   PartialPath.Last(int n) -> List<(int x, int y)>
-            //   PartialPath.Contains()
+            //   PartialPath.Contains(int x, int y) -> bool
             // 
             // Maze: the maze to solve
             //   Maze.IsGoal(x,y) -> bool

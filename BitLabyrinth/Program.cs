@@ -2,6 +2,7 @@
 using BitLabyrinth;
 using BitLabyrinth.Maze;
 using BitLabyrinth.Maze.Solvers;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 Dictionary<string, MazeSolver> Solvers = new Dictionary<string, MazeSolver>();
 
@@ -15,8 +16,8 @@ Solvers.Add("random", new RandomMS());
 
 
 MazeSolver solver = SolverSelect();
-Map maze = MazeSelect();
-int cutoff = StepSelect();
+Map maze = MazeSelect("simple");
+int cutoff = StepSelect(100);
 
 solver.SetMap(maze);
 
@@ -70,10 +71,10 @@ MazeSolver SolverSelect()
     //if one of the if conditions failed we didnt get valid input, repeat
     return SolverSelect();
 }
-Map MazeSelect()
+Map MazeSelect(string def)
 {
     Console.Clear();
-    Console.WriteLine("Please pick a maze for your mouse to try:");
+    Console.WriteLine("Please pick a maze for your mouse to try (Default: " + def + ")");
     Console.WriteLine("[1] simple");
     Console.WriteLine("[2] mouse");
     Console.WriteLine("[3] invalid");
@@ -86,6 +87,10 @@ Map MazeSelect()
 
     switch (input)
     {
+        case "":
+            filePath = "../../../Maze/test-values/" + def + ".txt";
+            break;
+
         case "1":
             filePath = "../../../Maze/test-values/simple.txt";
             break;
@@ -100,7 +105,8 @@ Map MazeSelect()
 
         default:
             Console.WriteLine("Invalid Input. Loading default.");
-            break;
+            return MazeSelect(def);
+            
     }
 
 
@@ -110,15 +116,18 @@ Map MazeSelect()
 
     return maze;
 }
-int StepSelect()
+int StepSelect(int def)
 {
     Console.Clear();
-    Console.WriteLine("How many steps does your mouse get?");
+    Console.WriteLine("How many steps does your mouse get ? (Default: " + def + ")");
     string input = Console.ReadLine();
-    
+
 
     if (!(input is null))
     {
+        if (input == "")
+            return def;
+
         int input_int = -1;
         Int32.TryParse(input, out input_int);
 
@@ -127,5 +136,5 @@ int StepSelect()
         
     }
 
-    return StepSelect();
+    return StepSelect(def);
 }
