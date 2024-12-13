@@ -1,4 +1,6 @@
 using BitLabyrinth.Maze;
+using BitLabyrinth.Logger;
+
 using System.Dynamic;
 using System.IO;
 using System.Linq;
@@ -102,6 +104,12 @@ namespace BitLabyrinth.Maze
 
         }
 
+        static void PrintLogForStep(Logger.Log log, int step)
+        {
+            List<string> entries = log.GetStep(step);
+
+        }
+
         static void PrintFrame(List<List<char>> frame)
         {
             foreach (var row in frame)
@@ -165,6 +173,9 @@ namespace BitLabyrinth.Maze
                 Console.Write(prevChar);
 
             }
+
+            // refresh log section
+            
 
             // set the cursor below the maze and make cursor visible
             int rowNumber = maze.Tiles.Count();
