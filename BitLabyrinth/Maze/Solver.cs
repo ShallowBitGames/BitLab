@@ -13,18 +13,32 @@ namespace BitLabyrinth
 {
     internal abstract class MazeSolver
     {
-        internal MazePath PartialPath = new();
+        internal enum Result
+        {
+            Uninitialized,
+            Runable,            
+            Solved,
+            Unsolvable,
+            Invalid
+        }
+
+        internal MazePath PartialPath;
         internal Map Maze;
+        internal Result State;
         //internal Log;
-        public MazeSolver() { }
+        public MazeSolver() {
+            PartialPath = new MazePath();
+            State = Result.Uninitialized;
+        }
 
         public bool ReachedGoal() { return Maze.IsGoal(PartialPath.Last()); }
 
-        internal void SetMap(Map maze)
+        internal void Init(Map maze)
         {
             Maze = maze;
             PartialPath = new();
             PartialPath.AddStep(Maze.StartPosition);
+            State = Result.Runable;
         }
 
         public MazePath SolveMaze(int cutoff)
@@ -41,6 +55,9 @@ namespace BitLabyrinth
                 currentPosition = PartialPath.Last();
                 counter++;
             }
+
+            if (Maze.IsGoal(currentPosition))
+                State = Result.Solved;
 
             return PartialPath;
         }
@@ -66,6 +83,11 @@ namespace BitLabyrinth
 
             return PartialPath;
         }
+
+       /* protected bool ValidatePath()
+        {
+            //TODO
+        }*/
 
     }
 }

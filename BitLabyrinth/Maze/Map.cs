@@ -13,6 +13,8 @@ namespace BitLabyrinth.Maze
             GoalPosition = goalPosition;
         }
 
+        internal string Name { get; set; } = "unnamed";
+
         internal (int, int) StartPosition { get; set; } = (0, 0);
 
         //TODO: multiple goals
