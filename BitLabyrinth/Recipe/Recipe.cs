@@ -24,7 +24,7 @@
         {
             string min = min_required > 0 ? min_required.ToString() : "0";
             string max = max_optional > 0 ? "-" + max_optional : "";
-            string str = "{" + ingredient.ToString() + ": " + min + max + "}";
+            string str = "[" + ingredient.ToString() + ": " + min + max + "]";
             return str;
         }
 
@@ -105,13 +105,12 @@
 
         public override string ToString()
         {
-            string s = "";
+            string s = Name +": {";
 
             foreach(var req in Requirements)
-            {
                 s += req.ToString();
-                s += Environment.NewLine;
-            }
+
+            s += "}";
 
             return s;
         }

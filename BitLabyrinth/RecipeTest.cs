@@ -22,8 +22,7 @@ namespace Tests
             factea.AddRequirement("Herb", 0, 2);
 
 
-            foreach (var r in factea.Requirements)
-                Console.WriteLine(r);
+            Console.WriteLine(factea.ToString());
         }
     }
 }
