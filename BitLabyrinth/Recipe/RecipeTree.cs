@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BitLabyrinth.Recipe
+﻿namespace BitLabyrinth.RecipeTree
 {
-    internal class RecipeTree
+    internal class RecipeTree<ID> where ID : IEquatable<ID>
     {
 
         //
 
         //
 
-        public bool AddNode(Recipe rec) { 
-        
+        public bool AddNode(Recipe<ID> rec)
+        {
+            return false;
             // exact match ==: return false
 
             // if < than some node: 
@@ -30,7 +25,7 @@ namespace BitLabyrinth.Recipe
 
             // < recipes: become children of new node
             // >
-        
+
         }
 
     }

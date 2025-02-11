@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BitLabyrinth.Maze.Solvers
+﻿namespace BitLabyrinth.Maze.Solvers
 {
 
     internal class RandomMS : MazeSolver

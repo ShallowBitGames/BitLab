@@ -1,17 +1,9 @@
-using BitLabyrinth.Maze;
-using System.Dynamic;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.Versioning;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks.Dataflow;
 
 namespace BitLabyrinth.Maze
 {
-    
+
     public static class MazeIO
     {
         //simple double dict, Access via Set and Get
@@ -59,7 +51,7 @@ namespace BitLabyrinth.Maze
 
         internal static Map ReadMap(string FilePath)
         {
-            
+
             List<List<char>> values = new();
             List<List<Tile>> tiles = new();
             (int, int) startPosition = (-1, -1);
@@ -71,11 +63,11 @@ namespace BitLabyrinth.Maze
             while ((line = reader.ReadLine()) != null)
             {
                 //char[] lineSep = line.ToCharArray();
-                values.Add(line.ToList()); 
+                values.Add(line.ToList());
 
             }
 
-            for(int x = 0; x < values.Count(); x++)
+            for (int x = 0; x < values.Count(); x++)
             {
                 List<Tile> row = new();
 
@@ -121,7 +113,8 @@ namespace BitLabyrinth.Maze
         {
             List<List<char>> frames = new();
 
-            foreach (var rowMaze in maze.Tiles) {
+            foreach (var rowMaze in maze.Tiles)
+            {
 
                 List<char> rowFrame = new();
 
@@ -135,7 +128,7 @@ namespace BitLabyrinth.Maze
             }
 
             return frames;
-                           
+
         }
 
         internal static void AnimatePath(Map maze, MazePath path)
@@ -147,7 +140,8 @@ namespace BitLabyrinth.Maze
             Console.Clear();
             PrintFrame(frameBase);
 
-            foreach(var step in path.Steps) {
+            foreach (var step in path.Steps)
+            {
 
                 int x = step.Item1;
                 int y = step.Item2;
@@ -169,7 +163,7 @@ namespace BitLabyrinth.Maze
             // set the cursor below the maze and make cursor visible
             int rowNumber = maze.Tiles.Count();
             Console.SetCursorPosition(0, rowNumber + 1);
-            Console.CursorVisible=true;
+            Console.CursorVisible = true;
 
         }
 

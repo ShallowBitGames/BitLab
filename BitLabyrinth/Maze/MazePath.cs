@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BitLabyrinth.Maze
+﻿namespace BitLabyrinth.Maze
 {
     internal class MazePath
     {
-        public MazePath() { Steps = new();  }
+        public MazePath() { Steps = new(); }
 
         // copy constructor
-        public MazePath(MazePath Original) {
+        public MazePath(MazePath Original)
+        {
 
-            foreach((int, int) step in Original.Steps)
+            foreach ((int, int) step in Original.Steps)
                 this.AddStep(step.Item1, step.Item2);
 
         }
-        
+
         public List<(int, int)> Steps { get; private set; }
 
         public void Clear() { Steps.Clear(); }
@@ -35,12 +30,12 @@ namespace BitLabyrinth.Maze
         public void AddStep(int x, int y) { AddStep((x, y)); }
 
         public void AddStep((int, int) coordinates) { Steps.Add(coordinates); }
-    
+
         override public string ToString()
         {
             string st = "";
 
-            foreach(var step in Steps)
+            foreach (var step in Steps)
                 st += "(" + step.Item1 + ", " + step.Item2 + ") ";
 
             return st;

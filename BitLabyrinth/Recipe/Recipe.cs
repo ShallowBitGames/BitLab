@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ExceptionServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BitLabyrinth.RecipeTree
+﻿namespace BitLabyrinth.RecipeTree
 {
 
     internal struct Requirement<ID> where ID : IEquatable<ID>
@@ -27,63 +20,102 @@ namespace BitLabyrinth.RecipeTree
 
         internal bool fulfils_optional(ID ing, int amount) { return Equals(ing, ingredient) && (max_optional == -1 || amount < max_optional); }
 
+        override public string ToString()
+        {
+            string min = min_required > 0 ? min_required.ToString() : "0";
+            string max = max_optional > 0 ? "-" + max_optional : "";
+            string str = "{" + ingredient.ToString() + ": " + min + max + "}";
+            return str;
+        }
+
     }
 
-    public class Recipe<ID> where ID : IEquatable<ID> {
-    
-    
-        Requirement<ID>[] requirements = [];
+    public class Recipe<ID> where ID : IEquatable<ID>
+    {
 
-    
-        bool includes(Requirement<ID> searched)
-    
+        ID Name;
+        internal List<Requirement<ID>> Requirements = [];
+
+        public Recipe(ID name) { Name = name;}
+
+        public void AddRequirement(ID ingredient, int min_required, int max_optional)
         {
-        
-            foreach (Requirement<ID> req in requirements)
-        
+            Requirements.Add(new Requirement<ID>(ingredient, min_required, max_optional));
+        }
+
+        internal bool includes(Requirement<ID> searched)
+        {
+
+            foreach (Requirement<ID> req in Requirements)
             {
 
                 if (req.fulfils_required(searched.ingredient, searched.min_required))
                 {
                     return true;
                 }
-        
+
             }
 
-        
+
             return false;
-    
+
         }
-    }
 
-    bool subtract(Requirement<ID> reqs)
-    {
-        return true;
-    } 
-    
-    }
-
-    public static bool operator <(Recipe<ID> lh, Recipe<ID> rh)
+        internal bool subtract(Requirement<ID> req)
         {
-            bool smaller_reqs = false;
-            bool larger_reqs = false;
+            var ownreq = Requirements.Find(r => EqualityComparer<ID>.Default.Equals(r.ingredient, req.ingredient));
+            if (Object.ReferenceEquals(ownreq, null)) return false;
 
-            Recipe<ID> reqs_left = rh.requirements;
+            ownreq.max_optional -= req.min_required;
+            ownreq.min_required -= req.min_required;
+            return true;
 
-            foreach (Requirement<ID> req in lh.requirements)
+        }
+
+
+
+        public static bool operator <(Recipe<ID> lh, Recipe<ID> rh)
+        {
+
+            Recipe<ID> reqs_left = rh;
+
+            foreach (Requirement<ID> req in lh.Requirements)
             {
                 if (reqs_left.includes(req))
-                {
-                    smaller_reqs = true;
                     reqs_left.subtract(req);
-                }
+                else
+                    return false;
             }
+            return true;
         }
 
         public static bool operator >(Recipe<ID> lh, Recipe<ID> rh)
         {
-            return false;
+            Recipe<ID> reqs_left = lh;
+
+            foreach(Requirement<ID> req in rh.Requirements)
+                if(reqs_left.includes(req))
+                    reqs_left.subtract(req); 
+                else
+                    return false;
+        
+            return true;
+        }
+
+
+        public override string ToString()
+        {
+            string s = "";
+
+            foreach(var req in Requirements)
+            {
+                s += req.ToString();
+                s += Environment.NewLine;
+            }
+
+            return s;
         }
 
     }
+
 }

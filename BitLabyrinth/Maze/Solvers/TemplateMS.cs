@@ -1,11 +1,4 @@
-﻿using BitLabyrinth.Maze.Solvers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-// Implementing your own solver:
+﻿// Implementing your own solver:
 // 1. Create a new class file in the Maze/Solvers directory
 // 2. Copy over the content of this file
 // 3. Change the name TemplateMS to your class name
@@ -14,7 +7,6 @@ using System.Threading.Tasks;
 // 5. Implement the DecideStep function
 
 // For an example implementation check out Maze/Solvers/RandomMS.cs
-
 
 namespace BitLabyrinth.Maze.Solvers
 {

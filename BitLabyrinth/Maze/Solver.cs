@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-
-using BitLabyrinth;
-using BitLabyrinth.Maze;
+﻿using BitLabyrinth.Maze;
 
 namespace BitLabyrinth
 {
@@ -44,16 +35,17 @@ namespace BitLabyrinth
 
             return PartialPath;
         }
-        
+
         //public void SetPath()
 
         //public MazePath ForeshadowSteps()
-        
+
         //internal void AppendLog(string Message) { /*TODO */ }
         internal abstract (int, int) DecideStep();
 
-        public (int, int) Step() {
-        
+        public (int, int) Step()
+        {
+
             (int x, int y) nextPosition = DecideStep();
             PartialPath.AddStep(nextPosition);
             //Log 

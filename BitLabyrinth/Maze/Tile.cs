@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BitLabyrinth.Maze
+﻿namespace BitLabyrinth.Maze
 {
     enum TileType
     {
@@ -22,7 +15,7 @@ namespace BitLabyrinth.Maze
         {
             Type = type;
 
-            IsPassable = (     type == TileType.START
+            IsPassable = (type == TileType.START
                             || type == TileType.GOAL
                             || type == TileType.FREE);
         }
