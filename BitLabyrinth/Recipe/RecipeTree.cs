@@ -1,32 +1,108 @@
-﻿namespace BitLabyrinth.RecipeTree
+﻿using System.Runtime.InteropServices;
+
+namespace BitLabyrinth.RecipeTree
 {
-    internal class RecipeTree<ID> where ID : IEquatable<ID>
+
+    internal class Node<ID> where ID : IEquatable<ID>
     {
+        public Recipe<ID> Recipe { get; }
+        public Node<ID> Parent { get; set; }
+        public List<Node<ID>> Children { get; set; }
+
+        internal Node(Recipe<ID> recipe) { Recipe = recipe; }
+
+        public string ToString(string symbol, int level)
+        {
+            string str = String.Concat(Enumerable.Repeat(symbol, level));
+            str += Recipe.ToString();
+            str += Environment.NewLine;
+
+            foreach (var child in Children)
+                str += child.ToString(symbol, level+1);
+
+            return str;
+        }
+    }
+
+    public class RecipeTree<ID> where ID : IEquatable<ID>
+    {
+        Node<ID> Root { get; set; }
+
+        public RecipeTree(Recipe<ID> rootRec)
+        {
+            Root = new Node<ID>(rootRec);
+            Root.Parent = null;
+            Root.Children = new List<Node<ID>>();
+        }
 
         //
+        private Node<ID> createNode(Recipe<ID> rec, Node<ID> baseNode)
+        {
+            Node<ID> newNode = new Node<ID>(rec);
+            newNode.Parent = baseNode;
+            newNode.Children = new();
 
-        //
+            baseNode.Children.Add(newNode);
+
+            return newNode;
+        }
 
         public bool AddNode(Recipe<ID> rec)
         {
-            return false;
-            // exact match ==: return false
+            // root sets the base conditions for this tree
+            if (!(rec < Root.Recipe))
+                return false;
 
-            // if < than some node: 
+            var result = SinkNode(rec, Root);
 
-            // if > than some node: gather
-
-            // if sameSpot as some node: return false
-
-            // if 
-
-            // gather nodes of current level that are either
-            // <, >, <>
-
-            // < recipes: become children of new node
-            // >
+            return result != null;
 
         }
 
+        internal Node<ID> SinkNode(Recipe<ID> rec, Node<ID> baseNode)
+        {
+
+            // try to sink below first possible child
+            // !! child order may change result 
+            foreach (Node<ID> child in baseNode.Children)
+            {
+                if (rec < child.Recipe)
+                    return SinkNode(rec, child);
+            }
+
+            // not smaller than any child:
+            // 1. gather nodes with smaller (more specific) recipes
+            // 2. insert new node between them and baseNode
+            // also includes the case when baseNode is a leaf
+
+            List<Node<ID>> smallerChildren = new();
+
+            // collect children that are more specific
+            foreach (Node<ID> child in baseNode.Children)
+                if (child.Recipe < rec)
+                    smallerChildren.Add(child);
+
+            
+            // create new node
+            Node<ID> newNode = createNode(rec, baseNode);
+
+            // reparent children
+            foreach (Node<ID> child in smallerChildren)
+            {
+                baseNode.Children.Remove(child);
+                child.Parent = newNode;
+            }
+
+            newNode.Children = smallerChildren;
+
+            return newNode;
+
+        }
+
+        override public string ToString()
+        {
+            return Root.ToString("-", 0);
+        }
     }
+    
 }
