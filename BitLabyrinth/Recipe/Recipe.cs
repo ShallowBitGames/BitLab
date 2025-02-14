@@ -71,6 +71,8 @@
                 if (match.min_required < required_rh.min_required)
                     return false;
 
+                // not quite correct yet
+                // but working on constraint examples
                 match.min_required += required_rh.min_required;
                 match.max_optional -= required_rh.max_optional;
 
