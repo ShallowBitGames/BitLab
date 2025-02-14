@@ -43,63 +43,36 @@
             Requirements.Add(new Requirement<ID>(ingredient, min_required, max_optional));
         }
 
-        internal bool includes(Requirement<ID> searched)
-        {
 
-            foreach (Requirement<ID> req in Requirements)
-            {
-
-                if (req.fulfils_required(searched.ingredient, searched.min_required))
-                {
-                    return true;
-                }
-
-            }
-
-
-            return false;
-
-        }
-
-        internal bool subtract(Requirement<ID> req)
-        {
-            var ownreq = Requirements.Find(r => EqualityComparer<ID>.Default.Equals(r.ingredient, req.ingredient));
-            if (Object.ReferenceEquals(ownreq, null)) return false;
-
-            ownreq.max_optional -= req.min_required;
-            ownreq.min_required -= req.min_required;
-            return true;
-
-        }
-
-
-
+        // a is smaller than b iff
+        // requirements of a fulfilled => requirements of b fulfilled
         public static bool operator <(Recipe<ID> lh, Recipe<ID> rh)
         {
 
-            Recipe<ID> reqs_left = rh;
+            List<Requirement<ID>> remainingRH = new(rh.Requirements);
 
-            foreach (Requirement<ID> req in lh.Requirements)
-            {
-                if (reqs_left.includes(req))
-                    reqs_left.subtract(req);
-                else
+            foreach (Requirement<ID> requiredLH in lh.Requirements) {
+
+                Requirement<ID>? potential_match = remainingRH.Find(requiredRH => EqualityComparer<ID>.Default.Equals(requiredLH.ingredient, requiredRH.ingredient));
+                if (potential_match is null)
                     return false;
-            }
+
+                Requirement<ID> match = (Requirement<ID>) potential_match;
+
+                if (match.min_required > requiredLH.min_required)
+                    return false;
+
+                match.min_required += requiredLH.min_required;
+
+                }
+
             return true;
+                        
         }
 
         public static bool operator >(Recipe<ID> lh, Recipe<ID> rh)
         {
-            Recipe<ID> reqs_left = lh;
-
-            foreach(Requirement<ID> req in rh.Requirements)
-                if(reqs_left.includes(req))
-                    reqs_left.subtract(req); 
-                else
-                    return false;
-        
-            return true;
+            return rh < lh;
         }
 
 
