@@ -53,16 +53,19 @@
 
             foreach (Requirement<ID> requiredLH in lh.Requirements) {
 
-                Requirement<ID>? potential_match = remainingRH.Find(requiredRH => EqualityComparer<ID>.Default.Equals(requiredLH.ingredient, requiredRH.ingredient));
-                if (potential_match is null)
+                int matchID = remainingRH.FindIndex(requiredRH => EqualityComparer<ID>.Default.Equals(requiredLH.ingredient, requiredRH.ingredient));
+                if (requiredLH.min_required > 0 && matchID == -1)
                     return false;
 
-                Requirement<ID> match = (Requirement<ID>) potential_match;
+                var match = remainingRH[matchID];
 
                 if (match.min_required > requiredLH.min_required)
                     return false;
 
                 match.min_required += requiredLH.min_required;
+                match.max_optional -= requiredLH.max_optional;
+
+                remainingRH[matchID] = match;
 
                 }
 
