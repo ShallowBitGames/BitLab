@@ -14,6 +14,7 @@ namespace BitLabyrinth.RecipeTree
         public string ToString(string symbol, int level)
         {
             string str = String.Concat(Enumerable.Repeat(symbol, level));
+            str += " ";
             str += Recipe.ToString();
             str += Environment.NewLine;
 
@@ -101,7 +102,7 @@ namespace BitLabyrinth.RecipeTree
 
         override public string ToString()
         {
-            return Root.ToString("-", 0);
+            return Root.ToString("--", 0);
         }
     }
     
