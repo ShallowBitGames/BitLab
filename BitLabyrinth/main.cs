@@ -7,6 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Tests;
 
-Categories<string> cat = new ("/recipes/categories.json");
+//string projectFiles = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory);
+
+//Categories<string> cat = new (projectFiles + "recipes\categories.json");
 
 //RecipeTest.Run();
+
+string pathCategories = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory) + "..\\..\\..\\Recipe\\recipes\\categories.xml";
+
+RecipeTest.path = pathCategories;
+RecipeTest.Run();
+
+//TODO: clean path calculation
+Console.WriteLine(pathCategories);

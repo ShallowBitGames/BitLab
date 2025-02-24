@@ -4,13 +4,14 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using BitLabyrinth.Recipe;
 using BitLabyrinth.RecipeTree;
 
 namespace Tests
 {
     public static class RecipeTest
     {
+        public static string path { get; set; } = "";
         public static void Run()
         {
             Recipe<string> tea = new("Tea");
@@ -60,8 +61,11 @@ namespace Tests
             rt.AddNode(fatea);
             rt.AddNode(fenneltea);
 
-            Console.Write(rt.ToString());
-            
+            //Console.Write(rt.ToString());
+
+            Categories<string> cats = new(path);
+            Console.WriteLine(cats.ToString());
+
         }
     }
 }
