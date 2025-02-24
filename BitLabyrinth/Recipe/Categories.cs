@@ -34,6 +34,7 @@ namespace BitLabyrinth.Recipe
         // avoids double entries
         void addToCategories(ID id, List<ID> parentCategories) 
         {
+            // sibling nodes can share a list, they have the same ancestors
             if (!categoryDict.ContainsKey(id))
                 categoryDict.Add(id, parentCategories);
             else
