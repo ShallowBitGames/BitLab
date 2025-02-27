@@ -20,7 +20,9 @@ namespace BitLabyrinth.Maze.Solvers
 {
     internal class TemplateMS : MazeSolver
     {
-        // OPTIONAL
+
+        // ----------------------------------------------------------------
+        //          OPTIONAL
         // Add private variables and functions for internal use
         // e.g. a function to check if a field is already known, a heuristic or a whole internal map
         // example helper functions:
@@ -30,14 +32,18 @@ namespace BitLabyrinth.Maze.Solvers
         // example variables:
         // enum Directions {Up, Down, Left, Right}
         // Map Explored = new Map();
-
-        // OPTIONAL
+        // ----------------------------------------------------------------
+        // ----------------------------------------------------------------
+        //          OPTIONAL
         // Make your own constructor, in case you need to initialize
         // additional data structures
         // public TemplateMS() : base() { }
 
+        // ----------------------------------------------------------------
 
-        // REQUIRED
+
+        // ----------------------------------------------------------------
+        //          REQUIRED
         // Implement step function
 
         // Internal state of the solver class:
