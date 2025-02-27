@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.IO;
+using System.Runtime.InteropServices;
+using System.Text.Json;
 
 namespace BitLabyrinth.RecipeTree
 {
@@ -103,6 +105,19 @@ namespace BitLabyrinth.RecipeTree
         override public string ToString()
         {
             return Root.ToString("--", 0);
+        }
+
+        string serializeDown()
+        {
+
+
+        }
+
+        public bool writeRecipesToJSON(string path)
+        {
+            foreach 
+                FileStream fstream = File.Create(path + "");
+                JsonSerializer.SerializeAsync()
         }
     }
     

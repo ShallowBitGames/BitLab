@@ -19,7 +19,7 @@ namespace BitLabyrinth.Recipe
 
         void initiliaze(string path)
         {
-
+            
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.Load(path);
 

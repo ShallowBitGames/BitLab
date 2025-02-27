@@ -11,12 +11,11 @@ using Tests;
 
 //Categories<string> cat = new (projectFiles + "recipes\categories.json");
 
-//RecipeTest.Run();
-
-string pathCategories = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory) + "..\\..\\..\\Recipe\\recipes\\categories.xml";
-
-RecipeTest.path = pathCategories;
-RecipeTest.Run();
 
 //TODO: clean path calculation
-Console.WriteLine(pathCategories);
+string pathRecipeDir = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory) + "..\\..\\..\\Recipe\\recipes\\";
+
+RecipeTest.path = pathRecipeDir;
+RecipeTest.Run();
+
+

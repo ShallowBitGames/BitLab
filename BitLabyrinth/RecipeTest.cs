@@ -61,9 +61,11 @@ namespace Tests
             rt.AddNode(fatea);
             rt.AddNode(fenneltea);
 
-            //Console.Write(rt.ToString());
+            Console.Write(rt.ToString());
 
-            Categories<string> cats = new(path);
+            rt.writeToJSON(path + "tea.json");
+
+            Categories<string> cats = new(path + "categories.xml");
             Console.WriteLine(cats.ToString());
 
         }
