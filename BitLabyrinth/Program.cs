@@ -14,6 +14,7 @@ Dictionary<string, MazeSolver> Solvers = new Dictionary<string, MazeSolver>();
 Solvers.Add("random", new RandomMS());
 //Solvers.Add("YOUR_NAME", new YOUR_CLASS());
 
+Solvers.Add("Alex", new AlexMS());
 
 MazeSolver solver = SolverSelect();
 Map maze = MazeSelect("simple");

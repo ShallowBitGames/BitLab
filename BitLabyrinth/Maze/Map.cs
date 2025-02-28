@@ -46,6 +46,11 @@ namespace BitLabyrinth.Maze
                 && y < Tiles[x].Count);
         }
 
+        internal bool IsValid((int, int) coordinates)
+        {
+            return IsValid(coordinates.Item1, coordinates.Item2);
+        }
+
         internal bool IsPassable((int, int) coordinates)
         {
             return IsPassable(coordinates.Item1, coordinates.Item2);
