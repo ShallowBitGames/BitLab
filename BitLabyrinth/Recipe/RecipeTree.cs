@@ -107,18 +107,38 @@ namespace BitLabyrinth.RecipeTree
             return Root.ToString("--", 0);
         }
 
-        string serializeDown()
+        public Recipe<ID> Match(ID[] ingredients)
         {
-
-
+            return MatchBelow(ingredients, Root);
         }
 
-        public bool writeRecipesToJSON(string path)
+        private Recipe<ID>? MatchBelow(ID[] ingredients, Node<ID> baseNode)
         {
-            foreach 
-                FileStream fstream = File.Create(path + "");
-                JsonSerializer.SerializeAsync()
+            if (!baseNode.Recipe.MatchesIngredients(ingredients))
+                return null;
+
+            foreach(Node<ID> child in baseNode.Children)
+            {
+                if (child.Recipe.MatchesIngredients(ingredients))
+                    return child.Recipe;
+            }
+
+            return baseNode.Recipe;
         }
+
+
+        //string serializeDown()
+        //{
+
+
+        //}
+
+        //public bool writeRecipesToJSON(string path)
+        //{
+        //    foreach 
+        //        FileStream fstream = File.Create(path + "");
+        //        JsonSerializer.SerializeAsync()
+        //}
     }
     
 }

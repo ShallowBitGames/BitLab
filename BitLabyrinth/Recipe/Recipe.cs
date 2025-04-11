@@ -20,6 +20,35 @@
 
         internal bool fulfils_optional(ID ing, int amount) { return Equals(ing, ingredient) && (max_optional == -1 || amount < max_optional); }
 
+        internal bool CanUse(ID ingredient)
+        {
+            // TODO: category match etc.
+            return Equals(ingredient, this.ingredient);
+        }
+
+        internal bool TakeAllRequired(List<ID> ingredients)
+        {
+            int hitsNeeded = min_required;
+
+            while(hitsNeeded > 0)
+            {
+                int index = -1;
+
+                for (int i = 0; i < ingredients.Count; i++)
+                    if (CanUse(ingredients[i]))
+                        index = i;
+
+                if (index == -1)
+                    return false;
+
+                hitsNeeded--;
+                ingredients.RemoveAt(index);
+
+            }
+
+            return true;
+        }
+
         override public string ToString()
         {
             string min = min_required > 0 ? min_required.ToString() : "0";
@@ -27,6 +56,7 @@
             string str = "[" + ingredient.ToString() + ": " + min + max + "]";
             return str;
         }
+
 
     }
 
@@ -105,6 +135,22 @@
             return s;
         }
 
+
+        
+        // TODO: implement recipe-ingredient match
+        public bool MatchesIngredients(ID[] ingredients)
+        {
+            List<ID> ingredientsLeft = new(ingredients);
+
+            foreach(Requirement<ID> req in Requirements)
+            {
+                bool fulfilled = req.TakeAllRequired(ingredientsLeft);
+
+                if (!fulfilled)
+                    return false;
+
+            return true;
+        }
     }
 
 }
