@@ -13,21 +13,21 @@ namespace BitLabyrinth.Maze
             GoalPosition = goalPosition;
         }
 
-        internal (int, int) StartPosition { get; set; } = (0, 0);
+        internal (int X, int Y) StartPosition { get; set; } = (0, 0);
 
         //TODO: multiple goals
-        internal (int, int) GoalPosition { get; set; } = (0, 0);
+        internal (int X, int Y) GoalPosition { get; set; } = (0, 0);
 
         internal List<List<Tile>> Tiles { get; set; } = new List<List<Tile>>();
 
         internal bool IsGoal(int x, int y)
         {
-            return (x == GoalPosition.Item1 && y == GoalPosition.Item2);
+            return (x == GoalPosition.X && y == GoalPosition.Y);
         }
 
-        internal bool IsGoal((int, int) coordinates)
+        internal bool IsGoal((int X, int Y) coordinates)
         {
-            return IsGoal(coordinates.Item1, coordinates.Item2);
+            return IsGoal(coordinates.X, coordinates.Y);
         }
 
         internal bool IsPassable(int x, int y)

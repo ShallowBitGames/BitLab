@@ -18,7 +18,7 @@ namespace BitLabyrinth.Maze
 
         }
         
-        public List<(int, int)> Steps { get; private set; }
+        public List<(int X, int Y)> Steps { get; private set; }
 
         public void Clear() { Steps.Clear(); }
 
@@ -41,7 +41,7 @@ namespace BitLabyrinth.Maze
             string st = "";
 
             foreach(var step in Steps)
-                st += "(" + step.Item1 + ", " + step.Item2 + ") ";
+                st += "(" + step.X + ", " + step.Y + ") ";
 
             return st;
         }
